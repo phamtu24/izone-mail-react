@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Mail from './mail';
 import DataContext from '../../contexts/data_context';
 
-export default class MailData extends Component {
-    render() {
+export default () => {
         return (
             <DataContext.Consumer>
                 {({ messages }) =>
@@ -20,5 +18,4 @@ export default class MailData extends Component {
                     </div>}
             </DataContext.Consumer>
         );
-    };
 };

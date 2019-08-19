@@ -22,14 +22,15 @@ function RenderImage(messageFrom, messages) {
 
 function Child({ match }) {
     const messageFrom = (messages) => {
-        return messages.find(mess => mess.messageID == match.params.id)    
+        return messages.find(mess => (mess.messageID) == match.params.id)    
     } 
     return (
       <DataContext.Consumer>
-            { ({messages}) =>  
+            { ({messages}) =>
             <div>
                 {messages.length > 0 && 
                 <div>
+                    {console.log(match.params.id)}
                     <Container>
                         <div className="header">
                             <div className="overlayer">
@@ -68,7 +69,7 @@ export default class MailDetail extends Component {
     }
     render() {
         return(
-            <Route path="/:id" exact component={Child} />
+            <Route path="/mail/:id" exact component={Child} />
         );
     };
 };

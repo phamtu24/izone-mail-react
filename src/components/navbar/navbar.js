@@ -34,10 +34,12 @@ export default class NavigationBar extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <NavDropdown class="dropdown-cover" title="Members" id="collasible-nav-dropdown">
-                {members.map(member => <NavDropdown.Item href="#action/3.0">
+                {members.map(member => <NavDropdown.Item>
                   <div className="downdrop-item">
-                    <img src={member.avatar} />
-                    <p>{member.name}</p>
+                    <Link to={"/" + member.name}>
+                      <img src={member.avatar} />
+                      <p>{member.name}</p>
+                    </Link>
                   </div>
                 </NavDropdown.Item>)}
               </NavDropdown>

@@ -8,7 +8,7 @@ export default class Navigation extends Component {
         const { Mail } = this.props;
         return (
             <Container>
-                <Link to={Mail.messageID}>
+                <Link to={"mail/" + Mail.messageID}>
                 <div className="wrapper">
                     <div className="overlayer">
                         <img className="avatar" src={Mail.Member.avatar} />
