@@ -1,0 +1,46 @@
+.header {
+    margin: auto;
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.header .title {
+    font-weight: bold;
+    font-size: 1rem;
+    flex-grow: 1
+}
+
+.from-to {
+    flex-grow: 1;
+    justify-content: space-between;
+    line-height: 1.7rem;
+}
+
+.from-to .name {
+    font-weight: bold;
+}
+
+
+.mail-detail .pre {
+    font-family: inherit;
+    padding: 8px;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.avatar {
+    width: 100%;
+}
+
+.indicator {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15rem;
+    align-content: center;
+}

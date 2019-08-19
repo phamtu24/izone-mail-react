@@ -1,0 +1,65 @@
+body {
+    font-size: 0.8rem;
+}
+
+.logo {
+    width: 3.5rem;
+    margin: 0;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+    border: none;
+    padding: 0;
+
+}
+
+.downdrop-item {
+    height: 2rem;
+}
+
+.dropdown-menu > a:visited {
+    background-color: #343a40;
+}
+
+.dropdown-menu > a:hover {
+    background-color: rgba(255, 255, 255, 0.432);
+}
+
+.downdrop-item img {
+    width: 2rem;
+    float: left;
+}
+
+.downdrop-item p {
+    color: white;
+    opacity: 0.5;
+    line-height: 2rem;
+    margin-left: 2.5rem;
+    font-size: 0.8rem;
+}
+
+.item {
+    color: white;
+    opacity: 0.5;
+    line-height: 1rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.indicator {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20rem;
+    align-content: center;
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
