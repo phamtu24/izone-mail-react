@@ -1,0 +1,16 @@
+.date {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.photos {
+    width: 22%;
+    padding-top: 22%; /* 1:1 Aspect Ratio */
+    position: relative;
+    display: inline-block;
+    margin: 0 3% 3% 0 ;
+    background-size: cover;
+    background-position: center;
+    border-width: 0;
+}

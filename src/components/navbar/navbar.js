@@ -44,8 +44,20 @@ export default class NavigationBar extends Component {
                 </NavDropdown.Item>)}
               </NavDropdown>
               <NavDropdown title="Photos" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="/photos/all-photos"><p className="item">All photos</p></NavDropdown.Item>
-                <NavDropdown.Item href="/photos/album"><p className="item">Album</p></NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to="/photos/all-photos">
+                    <p className="item">
+                      All photos
+                    </p>
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to="/photos/album">
+                    <p className="item">
+                      Album
+                    </p>
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="https://docs.google.com/spreadsheets/d/1pLzVvFno4JvV81LhASZpMX28_4eoa8Qu0e2jDDIGTqs/edit?usp=sharing">
                 Archive
