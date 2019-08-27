@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown, } from 'react-bootstrap';
 import './navbar.css';
 import logo from './logo.png'
@@ -34,7 +34,7 @@ export default class NavigationBar extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <NavDropdown class="dropdown-cover" title="Members" id="collasible-nav-dropdown">
-                {members.map(member => <NavDropdown.Item>
+                {members.map(member => <NavDropdown.Item collapseOnSelect>
                   <div className="downdrop-item">
                     <Link to={"/" + member.name}>
                       <img src={member.avatar} />
@@ -52,17 +52,18 @@ export default class NavigationBar extends Component {
                   </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/photos/album">
+                  <Link to="/photos/album" >
                     <p className="item">
                       Album
                     </p>
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="https://docs.google.com/spreadsheets/d/1pLzVvFno4JvV81LhASZpMX28_4eoa8Qu0e2jDDIGTqs/edit?usp=sharing">
+              <Nav.Link target="_blank" 
+              href="https://docs.google.com/spreadsheets/d/1pLzVvFno4JvV81LhASZpMX28_4eoa8Qu0e2jDDIGTqs/edit?usp=sharing">
                 Archive
               </Nav.Link>
-              <Nav.Link href="/add">Add</Nav.Link>
+              <Nav.Link href="#">Add</Nav.Link>
 
             </Nav>
             <Nav>

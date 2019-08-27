@@ -1,36 +1,21 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './style.css';
 import DataProvider from './components/data_provider';
 import NavBar from './components/navbar/navbar';
 import MailData from './components/mail/mail_data.js';
 import DataContext from './contexts/data_context';
+
 import MailDetail from './components/mail/mail_detail';
 import IndividualMail from './components/mail/individual_mail';
-import AllPhotos from './components/photos/all_photos/all_photos';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import PhotoRoute from './components/photos/all_photos/photo_route';
 
-function renderRoute(path, component) {
-  return (
-    <Route exact path={path}>
-      {({ match }) => (
-        <CSSTransition
-          in={match != null}
-          timeout={300}
-          classNames="fade"
-          unmountOnExit
-        >
-          {component}
-        </CSSTransition>
-      )}
-    </Route>
-  )
+const testCom = () => {
+  return <h1> fello </h1>
 }
-
 class App extends Component {
 
   render() {
-
     return (
       <Router>
         <DataProvider>
@@ -38,10 +23,12 @@ class App extends Component {
             <DataContext.Consumer>
               {({ members }) => <NavBar members={members} />}
             </DataContext.Consumer>
-            {renderRoute('/', MailData)}
-            {renderRoute('/photos/all-photos', AllPhotos)}
-            <MailDetail />
-            <IndividualMail />
+            <Route path="/mail/:id" exact component={MailDetail} />
+            
+            
+            <Route path="/:id" exact component={IndividualMail} />
+            <Route path="/photos/:id" exact component={PhotoRoute} />
+            <Route path="/" exact component={MailData}/>
           </div>
         </DataProvider>
       </Router>

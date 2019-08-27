@@ -1,40 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DataContext from '../contexts/data_context';
 
 
-export default class extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            messages: [],
-            members: []
+export default (props) => {
+     let isMounted = true;
+    let url = `http://localhost:5000/`;
+    let [messages, setMessage] = useState([]);
+    let [members, setMember] = useState([]);
+
+    useEffect(async () => {
+        const res = await axios.get(url);
+        if (isMounted) {
+            setMessage(res.data.messages);
+            setMember(res.data.members);
         }
-    }
-
-    componentDidMount() {
-        const { messages, members } = this.state
-        axios.get(`https://izone-mail.web.app/api`)
-        .then(res => {
-            this.setState({
-                messages: messages.concat(res.data)
-            })
-        });
-
-        axios.get(`https://izone-mail.web.app/api/members`)
-        .then(res => {
-            this.setState({ members: members.concat(res.data) });
-        });
-    }
-
-    render() {
-        const { messages, members } = this.state;
-        return(
-            <DataContext.Provider value={ {messages, members} }>
-                {this.props.children}
-            </DataContext.Provider>
-        );
-    };
+        return (() => isMounted = false)
+    }, []);
+    
+    return (
+        <DataContext.Provider value={{ messages, members }}>
+            {props.children}
+        </DataContext.Provider>
+    );
 };
 

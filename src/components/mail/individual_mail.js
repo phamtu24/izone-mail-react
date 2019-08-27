@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import Mail from './mail';
 import DataContext from '../../contexts/data_context';
 import { Route } from 'react-router-dom';
 
-function Child({ match }) {
-    const filter = (messages) => {
-        let filterMessages = messages.filter(a => a.Member.name === match.params.id)
-        return filterMessages
-    }
-    return (
-        <DataContext.Consumer>
-            {({ messages }) =>
-                
-                <div>
-                    {messages.length > 0 &&
-                        filter(messages).map(mess => <Mail Mail={mess} />)
-                    }
-                    {messages.length === 0 &&
-                        <img className="indicator" style={{ "width": "15rem" }}
-                            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
-                    }
+export default ({ match }) => {
+    let [messages, setMessage] = useState([]);
+    let [mount, setMount] = useState(true)
+    let url = `http://localhost:5000/${match.params.id}`
 
-                </div>}
-        </DataContext.Consumer>
+    useEffect(() => {
+        setMount(true)
+        axios.get(url)
+            .then(res => {
+                setMessage(res.data)
+            });
+
+        return (() => { setMount(false)})
+    }, [match.params])
+    return (
+        <>
+            {
+                messages.length > 0 &&
+                messages.map(mess => <Mail Mail={mess} />)
+            }
+            {
+                messages.length === 0 &&
+                <img className="indicator" style={{ "width": "15rem" }}
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+            }
+        </>
     );
 }
-
-export default () => {
-    return (
-        <Route path="/:id" exact component={Child}/>
-    )
-
-};
