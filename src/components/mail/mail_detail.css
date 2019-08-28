@@ -44,3 +44,30 @@
     width: 15rem;
     align-content: center;
 }
+
+.modal-header {
+    background-color: white!important;
+    font-size: 0.8rem;
+    
+}
+
+.modal-title {
+    font-size: 1rem;
+}
+
+.custom-body {
+    background-color: white;
+    padding: 1rem!important;
+}
+
+.modal-body textarea {
+    width: 100%;
+    min-height: 15rem;
+    font-size: 16px;
+}
+
+.trans-button {
+    border: none;
+    text-decoration: underline;
+    color: blue;
+}

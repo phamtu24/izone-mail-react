@@ -59,12 +59,13 @@ export default class NavigationBar extends Component {
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link target="_blank" 
-              href="https://docs.google.com/spreadsheets/d/1pLzVvFno4JvV81LhASZpMX28_4eoa8Qu0e2jDDIGTqs/edit?usp=sharing">
+              <Nav.Link target="_blank"
+                href="https://docs.google.com/spreadsheets/d/1pLzVvFno4JvV81LhASZpMX28_4eoa8Qu0e2jDDIGTqs/edit?usp=sharing">
                 Archive
               </Nav.Link>
-              <Nav.Link href="#">Add</Nav.Link>
-
+              <Link className="nav-bar nav-link" to="/Add/Add-new-mail">
+                Add
+              </Link>
             </Nav>
             <Nav>
               <Nav.Link href="#deets">Logout</Nav.Link>

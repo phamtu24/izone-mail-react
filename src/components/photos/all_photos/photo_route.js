@@ -15,10 +15,10 @@ export default (props) => {
             return <Album />
             break;
         case 'all-photos':
-            return <PhotoRoute url={"http://localhost:5000/photos/all-photos"}/>
+            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/all-photos"}/>
             break;
         default:
-            return <PhotoRoute url={"http://localhost:5000/photos/" + params.id}/>
+            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/" + params.id}/>
     }
 }
 

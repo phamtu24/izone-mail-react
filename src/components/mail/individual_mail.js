@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 export default ({ match }) => {
     let [messages, setMessage] = useState([]);
     let [mount, setMount] = useState(true)
-    let url = `http://localhost:5000/${match.params.id}`
+    let url = `https://izone-mail.herokuapp.com/m/${match.params.id}`
 
     useEffect(() => {
         setMount(true)

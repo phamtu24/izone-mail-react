@@ -5,7 +5,7 @@ import DataContext from '../contexts/data_context';
 
 export default (props) => {
      let isMounted = true;
-    let url = `http://localhost:5000/`;
+    let url = `https://izone-mail.herokuapp.com`;
     let [messages, setMessage] = useState([]);
     let [members, setMember] = useState([]);
 
