@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DataContext from '../../../contexts/data_context';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './album.css';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const filterPhotos = (messages, mem) => {
     let messageList = messages.filter(mess => mess.memberID == mem._id)
@@ -18,20 +18,28 @@ export default () => {
                 <>
                     {messages.length > 0 && members.length > 0 &&
                         <Container>
-                            {members.map(mem =>
-                                <div className="album-photos"
-                                style={{"background-image": "url(" + 
-                                filterPhotos(messages, mem) + ")"}}
-                                >
-                                    <Link to={"/photos/" + mem.name}>
-                                        <div className="overlay">
-                                            <span>
-                                                {mem.name}
-                                            </span>
+                            <Row>
+                                {members.map(mem =>
+                                    <Col xs={6} md={4}>
+                                        <div className="album-photos"
+                                            style={{
+                                                "background-image": "url(" +
+                                                    filterPhotos(messages, mem) + ")"
+                                            }}
+                                        >
+                                            <Link to={"/photos/" + mem.name}>
+                                                <div className="overlay">
+                                                    <span>
+                                                        {mem.name}
+                                                    </span>
+                                                </div>
+                                            </Link>
                                         </div>
-                                    </Link>
-                                </div>
-                            )}
+                                    </Col>
+
+                                )}
+                            </Row>
+                            
                         </Container>
                     }
                 </>

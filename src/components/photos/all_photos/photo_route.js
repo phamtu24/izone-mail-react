@@ -15,15 +15,15 @@ export default (props) => {
             return <Album />
             break;
         case 'all-photos':
-            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/all-photos"}/>
+            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/all-photos"} params={params}/>
             break;
         default:
-            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/" + params.id}/>
+            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/" + params.id} params={params}/>
     }
 }
 
 const PhotoRoute = (props) => {
-    const { url } = props;
+    const { url, params } = props;
     const [imageList, setImage] = useState([]);
     const [show, setShow] = useState(false);
     const [obj, setObj] = useState("");
@@ -43,30 +43,34 @@ const PhotoRoute = (props) => {
             .then(res => {
                 setImage(res.data)
             });
-    }, [])
+    }, [params])
 
     if (imageList) {
         return (
             <Container>
-                <Row>
-                    <Col sm>
+                
                         {imageList.map(ele =>
                             <>
                                 <b className="date">
                                     {ele.date}
                                 </b>
-                                {ele.images.map(image =>
+                                <Row>
+                                   
+                                    {ele.images.map(image =>
+                                     <Col xs={6} md={3}>
                                     <div className="photos"
                                         onClick={handleClick}
                                         style={{ "background-image": "url(" + image.url + ")" }}
                                         id={image.url+','+image.messageID}
                                     >
                                     </div>
+                                    </Col>
                                 )}
+                                    
+                                </Row>
                             </>
                         )}
-                    </Col>
-                </Row>
+                    
                 <Modal
                     show={show}
                     onHide={() => setShow(false)}
