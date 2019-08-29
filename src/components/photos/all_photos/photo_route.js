@@ -7,6 +7,7 @@ import './photo_route.css';
 import Album from './album';
 import downloadIcon from '../../../icon/download.png';
 import mailIcon from '../../../icon/envelope.png';
+import LazyLoad from './lazy_load';
 
 export default (props) => {
     const { match: { params } } = props;
@@ -58,12 +59,7 @@ const PhotoRoute = (props) => {
                                    
                                     {ele.images.map(image =>
                                      <Col xs={6} md={3}>
-                                    <div className="photos"
-                                        onClick={handleClick}
-                                        style={{ "background-image": "url(" + image.url + ")" }}
-                                        id={image.url+','+image.messageID}
-                                    >
-                                    </div>
+                                    <LazyLoad handleClick={handleClick} image={image}/>
                                     </Col>
                                 )}
                                     
