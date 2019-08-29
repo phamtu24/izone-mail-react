@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './style.css';
 import Add from './components/add/add';

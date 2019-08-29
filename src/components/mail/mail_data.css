@@ -1,0 +1,16 @@
+.custom-pagination {
+    margin-top: 1.5rem;
+    float: right;
+}
+
+.custom-pagination .page-number {
+    width: 2rem;
+    text-align: center;
+}
+
+.custom-pagination .custom-text {
+    margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
