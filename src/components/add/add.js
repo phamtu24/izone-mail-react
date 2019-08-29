@@ -4,22 +4,40 @@ import storage from '../../firebase';
 import axios from 'axios';
 import {
     Container, Form, Row,
-    Col, Button, ProgressBar
+    Col, Button,
+     ProgressBar, Alert
 } from 'react-bootstrap';
 const url = `https://izone-mail.herokuapp.com/add`;
-const postData = async (mail, imageUrl) => {
-    await axios({
-        method: "POST",
-        url: url,
-        data: {
-            "name": mail.name,
-            "title": mail.title,
-            "mail": mail.message,
-            "date": mail.date,
-            "transMail": mail.transMessage,
-            "images": imageUrl
-        }
-    })
+const postData = async (mail, imageUrl, setMail, setImageUrl, setProgress) => {
+    try {
+        await axios({
+            method: "POST",
+            url: url,
+            data: {
+                "name": mail.name,
+                "title": mail.title,
+                "mail": mail.message,
+                "date": mail.date,
+                "transMail": mail.transMessage,
+                "images": imageUrl
+            },
+            transformResponse: [(data) => {
+                alert('Added successfully!');
+                setMail({
+                    name: "Miyawaki Sakura",
+                    title: "",
+                    message: "",
+                    date: "",
+                    transMessage: ""
+                });
+                setImageUrl([]);
+                setProgress(0);
+            }],
+            timeout: 10000
+        })
+    } catch(error) {
+        alert(error)
+    }
 }
 
 export default () => {
@@ -32,7 +50,6 @@ export default () => {
     });
     const [imageUrl, setImageUrl] = useState([]);
     const [progress, setProgress] = useState(0);
-    const imgUrl = [];
     const handleChangeFile = async (event) => {
         if (!event.target.files) { return }
         let imgs = [];
@@ -154,10 +171,10 @@ export default () => {
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Col sm="10">
-                        <Button variant="dark"
+                        <Button variant="outline-dark"
                             onClick={() => {
-                                postData(mail, imageUrl)
-                                window.location.reload()
+                                postData(mail, imageUrl, setMail, setImageUrl, setProgress)
+                                // window.location.reload()
                             }}
                         >Submit</Button>
                     </Col>

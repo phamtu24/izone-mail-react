@@ -23,7 +23,10 @@ export default (props) => {
                         "transMail": trans
                     }
                     ]
-            }
+            },
+            transformResponse: [(data) => {
+                window.location.reload()
+            }]
         })
     }
 
@@ -91,7 +94,6 @@ export default (props) => {
                 <Modal.Header closeButton>
                     <button onClick={() => {
                         updateTrans(trans);
-                        window.location.reload();
                         }}>Submit</button>
                 </Modal.Header>
                 <Modal.Body className="custom-body">
