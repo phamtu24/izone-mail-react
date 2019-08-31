@@ -14,7 +14,8 @@ export default (props) => {
         const res = await axios({
             method: 'GET',
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')}
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+            sessionStorage.getItem('token')}
         });
         if (isMounted) {
             setMessage(res.data.messages);

@@ -17,7 +17,8 @@ export default (props) => {
         await axios({
             method: "POST",
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')},
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+            sessionStorage.getItem('token')},
             data: {
                 "message": [
                     {
@@ -41,7 +42,8 @@ export default (props) => {
         axios({
             method: 'GET',
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')}
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+            sessionStorage.getItem('token')}
         })
             .then(({ data }) => {
                 setMember(data.member[0]);

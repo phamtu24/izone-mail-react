@@ -15,7 +15,8 @@ export default ({ match }) => {
         axios({
             method: 'GET',
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')}
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+            sessionStorage.getItem('token')}
         })
             .then(res => {
                 setMessage(res.data)

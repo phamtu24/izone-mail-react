@@ -44,7 +44,8 @@ const PhotoRoute = (props) => {
         axios({
             method: 'GET',
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')}
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+            sessionStorage.getItem('token')}
         })
             .then(res => {
                 setImage(res.data)

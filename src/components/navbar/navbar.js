@@ -69,7 +69,7 @@ export default class NavigationBar extends Component {
             </Nav>
             <Nav>
               <Nav.Link onClick={() => {
-                localStorage.removeItem('token')
+                localStorage.removeItem('token') || sessionStorage.removeItem('token')
                 window.location.href = '/'
               }}>Logout</Nav.Link>
             </Nav>

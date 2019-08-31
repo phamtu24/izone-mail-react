@@ -14,7 +14,8 @@ const postData = async (mail, imageUrl, setMail, setImageUrl, setProgress) => {
         await axios({
             method: "POST",
             url: url,
-            headers: { 'Authorization' : localStorage.getItem('token')},
+            headers: { 'Authorization' : localStorage.getItem('token') || 
+                                         sessionStorage.getItem('token')},
             data: {
                 "name": mail.name,
                 "title": mail.title,
