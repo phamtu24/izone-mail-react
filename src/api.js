@@ -1,0 +1,1 @@
+export default 'https://izone-mail.herokuapp.com';

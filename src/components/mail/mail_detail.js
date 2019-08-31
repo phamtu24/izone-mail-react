@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import api from '../../api';
 import './mail_detail.css';
 
 export default (props) => {
@@ -10,12 +11,13 @@ export default (props) => {
     const [message, setMessage] = useState({});
     const [show, setShow] = useState(false);
     const [trans, setTrans] = useState("");
-    const url = `https://izone-mail.herokuapp.com/mail/${params.id}`;
+    const url = `${api}/mail/${params.id}`;
     
     const updateTrans = async (trans) => {
         await axios({
             method: "POST",
             url: url,
+            headers: { 'Authorization' : localStorage.getItem('token')},
             data: {
                 "message": [
                     {
@@ -36,7 +38,11 @@ export default (props) => {
 
     useEffect(() => {
         // do not use async await ?
-        axios.get(url)
+        axios({
+            method: 'GET',
+            url: url,
+            headers: { 'Authorization' : localStorage.getItem('token')}
+        })
             .then(({ data }) => {
                 setMember(data.member[0]);
                 setMessage(data.message[0]);
@@ -81,6 +87,7 @@ export default (props) => {
                         <div>
                             <p></p>
                             <img src={img} className="avatar" />
+                            <p></p>
                         </div>
                     )}
             </div>

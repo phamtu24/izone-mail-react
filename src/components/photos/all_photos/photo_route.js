@@ -3,11 +3,12 @@ import DataContext from '../../../contexts/data_context';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import './photo_route.css';
+import api from '../../../api';
 import Album from './album';
 import downloadIcon from '../../../icon/download.png';
 import mailIcon from '../../../icon/envelope.png';
 import LazyLoad from './lazy_load';
+import './photo_route.css';
 
 export default (props) => {
     const { match: { params } } = props;
@@ -16,10 +17,10 @@ export default (props) => {
             return <Album />
             break;
         case 'all-photos':
-            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/all-photos"} params={params}/>
+            return <PhotoRoute url={`${api}/photos/all-photos`} params={params}/>
             break;
         default:
-            return <PhotoRoute url={"https://izone-mail.herokuapp.com/photos/" + params.id} params={params}/>
+            return <PhotoRoute url={`${api}/photos/` + params.id} params={params}/>
     }
 }
 
@@ -40,7 +41,11 @@ const PhotoRoute = (props) => {
     }
 
     useEffect(() => {
-        axios.get(url)
+        axios({
+            method: 'GET',
+            url: url,
+            headers: { 'Authorization' : localStorage.getItem('token')}
+        })
             .then(res => {
                 setImage(res.data)
             });

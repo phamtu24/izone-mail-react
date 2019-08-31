@@ -1,26 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import api from '../../api';
+
+const login = async (username, password) => {
+    const res = await axios({
+        method:'POST',
+        url: `${api}/login`,
+        data: {
+            username: username,
+            password: password
+        }
+    })
+    localStorage.setItem('token', res.data.token)
+    window.location.href = "/"
+    
+}
 
 export default (props) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
         <Container>
             <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                <Form.Group>
+                    <Form.Label>User name</Form.Label>
+                    <Form.Control type="text"
+                    name="username" 
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter username" />
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        Subcribe to Official IZ*ONE Private Mail !
                 </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" 
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password" />
                 </Form.Group>
-                <Form.Group controlId="formBasicChecbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                <Form.Group>
+                    <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="outline-dark"
+                onClick={() => login(username, password)}>
                     Submit
             </Button>
             </Form>

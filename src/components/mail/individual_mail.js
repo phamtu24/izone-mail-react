@@ -3,15 +3,20 @@ import axios from 'axios';
 import Mail from './mail';
 import DataContext from '../../contexts/data_context';
 import { Route } from 'react-router-dom';
+import api from '../../api';
 
 export default ({ match }) => {
     let [messages, setMessage] = useState([]);
     let [mount, setMount] = useState(true)
-    let url = `https://izone-mail.herokuapp.com/m/${match.params.id}`
+    let url = `${api}/m/${match.params.id}`
 
     useEffect(() => {
         setMount(true)
-        axios.get(url)
+        axios({
+            method: 'GET',
+            url: url,
+            headers: { 'Authorization' : localStorage.getItem('token')}
+        })
             .then(res => {
                 setMessage(res.data)
             });

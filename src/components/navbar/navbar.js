@@ -68,7 +68,10 @@ export default class NavigationBar extends Component {
               </Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Logout</Nav.Link>
+              <Nav.Link onClick={() => {
+                localStorage.removeItem('token')
+                window.location.href = '/'
+              }}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

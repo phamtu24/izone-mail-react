@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import DataContext from '../../contexts/data_context';
 import storage from '../../firebase';
 import axios from 'axios';
+import api from '../../api';
 import {
     Container, Form, Row,
     Col, Button,
      ProgressBar, Alert
 } from 'react-bootstrap';
-const url = `https://izone-mail.herokuapp.com/add`;
+const url = `${api}/add`;
 const postData = async (mail, imageUrl, setMail, setImageUrl, setProgress) => {
     try {
         await axios({
             method: "POST",
             url: url,
+            headers: { 'Authorization' : localStorage.getItem('token')},
             data: {
                 "name": mail.name,
                 "title": mail.title,
